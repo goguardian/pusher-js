@@ -67,14 +67,18 @@ var getDefaultStrategy = function(
   };
 
   var ws_manager = new TransportManager({
+    transportType: 'ws',
     lives: config.wsLives,
     minPingDelay: 10000,
-    maxPingDelay: config.activityTimeout
+    maxPingDelay: config.activityTimeout,
+    reportDeathCallback: config.reportDeathCallback
   });
   var streaming_manager = new TransportManager({
+    transportType: 'streaming',
     lives: 2,
     minPingDelay: 10000,
-    maxPingDelay: config.activityTimeout
+    maxPingDelay: config.activityTimeout,
+    reportDeathCallback: config.reportDeathCallback
   });
 
   var ws_transport = defineTransportStrategy(

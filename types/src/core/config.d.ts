@@ -28,5 +28,6 @@ export interface Config {
     ignoreNullOrigin?: boolean;
     nacl?: nacl;
     timelineParams?: any;
+    reportDeathCallback?: (info: Object) => void;
 }
 export declare function getConfig(opts: Options, pusher: any): Config;

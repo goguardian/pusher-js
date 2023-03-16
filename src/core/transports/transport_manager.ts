@@ -5,6 +5,8 @@ import Factory from '../utils/factory';
 
 export interface TransportManagerOptions extends PingDelayOptions {
   lives?: number;
+  transportType?: string;
+  reportDeathCallback?: (info: Object) => void;
 }
 
 /** Keeps track of the number of lives left for a transport.
@@ -19,6 +21,7 @@ export interface TransportManagerOptions extends PingDelayOptions {
 export default class TransportManager {
   options: TransportManagerOptions;
   livesLeft: number;
+  reportDeathCallback?: (info: Object) => void;
 
   constructor(options: TransportManagerOptions) {
     this.options = options || {};
@@ -46,7 +49,15 @@ export default class TransportManager {
   }
 
   /** Takes one life from the transport. */
-  reportDeath() {
+  reportDeath(info: Object = {}) {
     this.livesLeft -= 1;
+
+    if (typeof this.options.reportDeathCallback === 'function') {
+      this.options.reportDeathCallback({
+        ...info,
+        transport_type: this.options.transportType || 'unknown',
+        lives_left: this.livesLeft
+      });
+    }
   }
 }

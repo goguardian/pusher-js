@@ -49,6 +49,7 @@ export interface Config {
   ignoreNullOrigin?: boolean;
   nacl?: nacl;
   timelineParams?: any;
+  reportDeathCallback?: (info: Object) => void;
 }
 
 // getConfig mainly sets the defaults for the options that are not provided
@@ -73,7 +74,8 @@ export function getConfig(opts: Options, pusher): Config {
     wsHost: getWebsocketHost(opts),
 
     userAuthenticator: buildUserAuthenticator(opts),
-    channelAuthorizer: buildChannelAuthorizer(opts, pusher)
+    channelAuthorizer: buildChannelAuthorizer(opts, pusher),
+    reportDeathCallback: opts.reportDeathCallback
   };
 
   if ('disabledTransports' in opts)

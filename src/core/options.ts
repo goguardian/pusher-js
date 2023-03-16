@@ -43,6 +43,7 @@ export interface Options {
   wsPort?: number;
   wssPort?: number;
   wsLives?: number;
+  reportDeathCallback?: (info: Object) => void;
 }
 
 export function validateOptions(options) {
