@@ -30,5 +30,7 @@ export interface Options {
     wsPath?: string;
     wsPort?: number;
     wssPort?: number;
+    wsLives?: number;
+    reportDeathCallback?: (info: Object) => void;
 }
 export declare function validateOptions(options: any): void;

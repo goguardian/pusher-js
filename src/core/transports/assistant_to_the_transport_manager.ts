@@ -75,12 +75,19 @@ export default class AssistantToTheTransportManager {
 
       if (closeEvent.code === 1002 || closeEvent.code === 1003) {
         // we don't want to use transports not obeying the protocol
-        this.manager.reportDeath();
+        this.manager.reportDeath({
+          reason: 'close code',
+          close_code: closeEvent.code
+        });
       } else if (!closeEvent.wasClean && openTimestamp) {
         // report deaths only for short-living transport
         var lifespan = Util.now() - openTimestamp;
         if (lifespan < 2 * this.maxPingDelay) {
-          this.manager.reportDeath();
+          this.manager.reportDeath({
+            reason: 'closed uncleanly',
+            close_code: closeEvent.code,
+            lifespan
+          });
           this.pingDelay = Math.max(lifespan / 2, this.minPingDelay);
         }
       }

@@ -6,6 +6,7 @@ export interface DefaultConfig {
     wsPort: number;
     wssPort: number;
     wsPath: string;
+    wsLives: number;
     httpHost: string;
     httpPort: number;
     httpsPort: number;

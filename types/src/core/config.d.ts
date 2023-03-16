@@ -18,6 +18,7 @@ export interface Config {
     wsPath: string;
     wsPort: number;
     wssPort: number;
+    wsLives: number;
     userAuthenticator: UserAuthenticationHandler;
     channelAuthorizer: ChannelAuthorizationHandler;
     forceTLS?: boolean;
@@ -27,5 +28,6 @@ export interface Config {
     ignoreNullOrigin?: boolean;
     nacl?: nacl;
     timelineParams?: any;
+    reportDeathCallback?: (info: Object) => void;
 }
 export declare function getConfig(opts: Options, pusher: any): Config;
