@@ -36,6 +36,7 @@ export interface Config {
   wsPath: string;
   wsPort: number;
   wssPort: number;
+  wsLives: number;
   userAuthenticator: UserAuthenticationHandler;
   channelAuthorizer: ChannelAuthorizationHandler;
 
@@ -64,6 +65,7 @@ export function getConfig(opts: Options, pusher): Config {
     wsPath: opts.wsPath || Defaults.wsPath,
     wsPort: opts.wsPort || Defaults.wsPort,
     wssPort: opts.wssPort || Defaults.wssPort,
+    wsLives: opts.wsLives === undefined ? Defaults.wsLives : opts.wsLives,
 
     enableStats: getEnableStatsConfig(opts),
     httpHost: getHttpHost(opts),

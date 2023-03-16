@@ -42,6 +42,7 @@ export interface Options {
   wsPath?: string;
   wsPort?: number;
   wssPort?: number;
+  wsLives?: number;
 }
 
 export function validateOptions(options) {

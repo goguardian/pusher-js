@@ -66,7 +66,7 @@ var getDefaultStrategy = function(
   };
 
   var ws_manager = new TransportManager({
-    lives: 2,
+    lives: config.wsLives,
     minPingDelay: 10000,
     maxPingDelay: config.activityTimeout
   });

@@ -18,6 +18,7 @@ export interface Config {
     wsPath: string;
     wsPort: number;
     wssPort: number;
+    wsLives: number;
     userAuthenticator: UserAuthenticationHandler;
     channelAuthorizer: ChannelAuthorizationHandler;
     forceTLS?: boolean;
